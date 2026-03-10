@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olivier Saidi — Researcher</title>
+<meta name="description" content="Researcher in computational complexity and optimization. Pattern-aware frameworks for NP-hard problems, LLM efficiency, and financial volatility modeling.">
+<meta property="og:title" content="Olivier Saidi — Researcher">
+<meta property="og:description" content="Pattern-aware frameworks for NP-hard optimization, LLM efficiency, and financial volatility modeling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0e0f13;--bg2:#13141a;--surface:#1a1b23;--border:#2a2b38;
+    --accent:#c8a96e;--accent2:#6e9ec8;--text:#e8e4da;--muted:#7a7a8a;
+    --mono:'IBM Plex Mono',monospace;--serif:'Playfair Display',Georgia,serif;
+    --sans:'IBM Plex Sans',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,169,110,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+  #bg-canvas{position:fixed;inset:0;opacity:.18;pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 2rem}
+  header{padding:5rem 0 4rem;border-bottom:1px solid var(--border)}
+  .header-inner{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end}
+  .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;opacity:0;animation:fadeUp .6s ease .1s forwards}
+  h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--text);opacity:0;animation:fadeUp .7s ease .2s forwards}
+  h1 em{font-style:italic;color:var(--accent)}
+  .tagline{margin-top:1.5rem;font-size:1rem;color:var(--muted);max-width:520px;line-height:1.8;opacity:0;animation:fadeUp .7s ease .35s forwards}
+  .header-links{display:flex;flex-direction:column;gap:.6rem;align-items:flex-end;opacity:0;animation:fadeUp .7s ease .45s forwards}
+  .header-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--muted);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:.5rem}
+  .header-links a:hover{color:var(--accent)}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+  section{padding:4rem 0;border-bottom:1px solid var(--border);opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  section.visible{opacity:1;transform:none}
+  .section-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:3rem}
+  .metric{background:var(--bg2);padding:1.5rem;text-align:center}
+  .metric-value{font-family:var(--serif);font-size:2rem;color:var(--accent);display:block;line-height:1;margin-bottom:.4rem}
+  .metric-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+  .papers{display:flex;flex-direction:column;gap:1.5rem}
+  .paper{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.8rem 2rem;transition:border-color .2s,background .2s}
+  .paper:hover{background:#1e1f2a;border-left-color:var(--accent2)}
+  .paper-title{font-family:var(--serif);font-size:1.15rem;font-weight:400;line-height:1.4;margin-bottom:.6rem}
+  .paper-title a{color:var(--text);text-decoration:none;transition:color .2s}
+  .paper-title a:hover{color:var(--accent)}
+  .paper-meta{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:.9rem;display:flex;gap:1.2rem;flex-wrap:wrap}
+  .paper-abstract{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1.1rem}
+  .paper-badges{display:flex;gap:.5rem;flex-wrap:wrap}
+  .badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;padding:.25rem .65rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:border-color .2s,color .2s;white-space:nowrap}
+  .badge:hover{border-color:var(--accent);color:var(--accent)}
+  .badge.primary{border-color:var(--accent);color:var(--accent)}
+  .repos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+  .repo{background:var(--surface);border:1px solid var(--border);padding:1.5rem;text-decoration:none;display:block;transition:border-color .2s,transform .2s}
+  .repo:hover{border-color:var(--accent2);transform:translateY(-2px)}
+  .repo-name{font-family:var(--mono);font-size:.8rem;color:var(--accent2);margin-bottom:.5rem;letter-spacing:.04em}
+  .repo-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+  .repo-stat{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.04em}
+  footer{padding:3rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .footer-name{font-family:var(--serif);font-size:1rem;color:var(--muted)}
+  .footer-links{display:flex;gap:1.5rem}
+  .footer-links a{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;transition:color .2s}
+  .footer-links a:hover{color:var(--accent)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:640px){.header-inner{grid-template-columns:1fr}.header-links{align-items:flex-start}footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="wrap">
+  <header>
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Researcher &middot; Paris, France</p>
+        <h1>Olivier <em>Saidi</em></h1>
+        <p class="tagline">Working on pattern-aware frameworks that exploit structural regularities in hard problems &mdash; applied to combinatorial optimization, LLM inference efficiency, and financial volatility modeling.</p>
+      </div>
+      <div class="header-links">
+        <a href="https://orcid.org/0009-0004-3221-6911" target="_blank"><span class="dot"></span>ORCID</a>
+        <a href="https://github.com/oliviersaidi" target="_blank"><span class="dot"></span>GitHub</a>
+        <a href="https://arxiv.org/abs/2506.13810" target="_blank"><span class="dot"></span>arXiv</a>
+        <a href="mailto:research.olivier@proton.me"><span class="dot"></span>Contact</a>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="section-label">Impact</div>
+    <div class="metrics">
+      <div class="metric"><span class="metric-value">1,252</span><span class="metric-label">Paper Views</span></div>
+      <div class="metric"><span class="metric-value">1,187</span><span class="metric-label">Downloads</span></div>
+      <div class="metric"><span class="metric-value">3</span><span class="metric-label">Open Repos</span></div>
+      <div class="metric"><span class="metric-value">1,496</span><span class="metric-label">Assets Studied</span></div>
+    </div>
+  </section>
+  <section>
+    <div class="section-label">Research</div>
+    <div class="papers">
+      <div class="paper">
+        <div class="paper-title"><a href="https://arxiv.org/abs/2506.13810" target="_blank">Bridging Pattern-Aware Complexity with NP-Hard Optimization: A Unifying Framework and Empirical Study</a></div>
+        <div class="paper-meta"><span>Olivier Saidi &middot; 2025</span><span>arXiv &middot; Cambridge Open Engage &middot; Zenodo</span><span>1,187 downloads</span></div>
+        <div class="paper-abstract">A novel pattern-aware complexity framework that quantifies and leverages structural regularities &mdash; clustering, symmetry &mdash; to reduce effective computational complexity across domains. Introduces PUE and achieves up to 79% solution quality gains in TSP benchmarks spanning 22&ndash;2,392 cities.</div>
+        <div class="paper-badges">
+          <a class="badge primary" href="https://arxiv.org/abs/2506.13810" target="_blank">arXiv:2506.13810</a>
+          <a class="badge" href="https://doi.org/10.33774/coe-2026-qndkw" target="_blank">Cambridge Open Engage</a>
+          <a class="badge" href="https://zenodo.org/records/15006676" target="_blank">DOI:10.5281/zenodo.15006676</a>
+          <a class="badge" href="https://github.com/oliviersaidi/pacf-framework" target="_blank">Code</a>
+        </div>
+      </div>
+      <div class="paper">
+        <div class="paper-title"><a href="https://zenodo.org/records/15873947" target="_blank">PACF: Pattern-Aware Complexity Framework for Efficient Large Language Model Generation</a></div>
+        <div class="paper-meta"><span>Olivier Saidi &middot; 2025</span><span>Zenodo</span></div>
+        <div class="paper-abstract">Dynamically detects and leverages patterns during LLM generation to reduce computational complexity while maintaining output quality. Achieves 93.8% average Pattern Utilization Efficiency across six text categories with &lt;1% production overhead and 10&times; efficiency improvement.</div>
+        <div class="paper-badges">
+          <a class="badge primary" href="https://zenodo.org/records/15873947" target="_blank">DOI:10.5281/zenodo.15873947</a>
+          <a class="badge" href="https://github.com/oliviersaidi/PACF_LLM" target="_blank">Code</a>
+        </div>
+      </div>
+      <div class="paper">
+        <div class="paper-title"><a href="https://github.com/oliviersaidi/PACF_F" target="_blank">When Does Volatility Model Selection Matter? Entropy Diagnostics for Financial Forecasting</a></div>
+        <div class="paper-meta"><span>Olivier Saidi &middot; 2026</span><span>Working Paper</span><span>1,496 assets &middot; 12 pre-registered hypotheses</span></div>
+        <div class="paper-abstract">Applies entropy-based metrics to predict when volatility model selection materially impacts financial forecasting. Walk-forward backtesting across 1,496 assets with 28 supplementary analyses and rigorous statistical validation.</div>
+        <div class="paper-badges">
+          <a class="badge primary" href="https://github.com/oliviersaidi/PACF_F" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="section-label">Open Source</div>
+    <div class="repos">
+      <a class="repo" href="https://github.com/oliviersaidi/pacf-framework" target="_blank">
+        <div class="repo-name">pacf-framework</div>
+        <div class="repo-desc">Pattern detection in TSP and combinatorial optimization. Meta-learning driven solver pipeline with extensible domain support.</div>
+        <div class="repo-stat">&#8593; 79% solution quality &middot; TSP 22&ndash;2,392 cities</div>
+      </a>
+      <a class="repo" href="https://github.com/oliviersaidi/PACF_LLM" target="_blank">
+        <div class="repo-name">PACF_LLM</div>
+        <div class="repo-desc">Pattern-aware inference for transformer models. Real-time n-gram, suffix tree, and attention pattern detection with session caching.</div>
+        <div class="repo-stat">93.8% avg PUE &middot; &lt;1% overhead &middot; 10&times; efficiency</div>
+      </a>
+      <a class="repo" href="https://github.com/oliviersaidi/PACF_F" target="_blank">
+        <div class="repo-name">PACF_F</div>
+        <div class="repo-desc">Entropy-based volatility model selection diagnostics. Walk-forward backtesting across major financial asset classes.</div>
+        <div class="repo-stat">1,496 assets &middot; 28 supplementary analyses</div>
+      </a>
+    </div>
+  </section>
+  <footer>
+    <span class="footer-name">Olivier Saidi</span>
+    <div class="footer-links">
+      <a href="https://orcid.org/0009-0004-3221-6911" target="_blank">ORCID</a>
+      <a href="https://github.com/oliviersaidi" target="_blank">GitHub</a>
+      <a href="https://arxiv.org/abs/2506.13810" target="_blank">arXiv</a>
+      <a href="https://zenodo.org/records/15873947" target="_blank">Zenodo</a>
+      <a href="mailto:research.olivier@proton.me">Email</a>
+    </div>
+  </footer>
+</div>
+<script>
+  const canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
+  let nodes=[],W,H;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+  function init(){resize();nodes=Array.from({length:28},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1.5}))}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<220){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=`rgba(200,169,110,${.6*(1-d/220)})`;ctx.lineWidth=.6;ctx.stroke()}
+    }
+    nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle='rgba(200,169,110,.8)';ctx.fill();n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1});
+    requestAnimationFrame(draw)
+  }
+  window.addEventListener('resize',resize);init();draw();
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+  document.querySelectorAll('section').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
