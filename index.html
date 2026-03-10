@@ -89,8 +89,8 @@
   <section>
     <div class="section-label">Impact</div>
     <div class="metrics">
-      <div class="metric"><span class="metric-value">1,252</span><span class="metric-label">Paper Views</span></div>
-      <div class="metric"><span class="metric-value">1,187</span><span class="metric-label">Downloads</span></div>
+      <div class="metric"><span class="metric-value" id="stat-views">1,252</span><span class="metric-label">Paper Views</span></div>
+      <div class="metric"><span class="metric-value" id="stat-downloads">1,187</span><span class="metric-label">Downloads</span></div>
       <div class="metric"><span class="metric-value">3</span><span class="metric-label">Open Repos</span></div>
       <div class="metric"><span class="metric-value">1,496</span><span class="metric-label">Assets Studied</span></div>
     </div>
@@ -178,6 +178,21 @@
   window.addEventListener('resize',resize);init();draw();
   const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
   document.querySelectorAll('section').forEach(s=>obs.observe(s));
+</script>
+<script>
+(async () => {
+  const records = [15006676, 15873947, 18894726];
+  try {
+    const results = await Promise.all(
+      records.map(id => fetch(`https://zenodo.org/api/records/${id}`).then(r => r.json()))
+    );
+    const views = results.reduce((s, d) => s + (d?.stats?.unique_views || 0), 0);
+    const downloads = results.reduce((s, d) => s + (d?.stats?.unique_downloads || 0), 0);
+    const fmt = n => n.toLocaleString("en-US");
+    document.getElementById("stat-views").textContent = fmt(views);
+    document.getElementById("stat-downloads").textContent = fmt(downloads);
+  } catch(e) { /* keep fallback values on error */ }
+})();
 </script>
 </body>
 </html>
