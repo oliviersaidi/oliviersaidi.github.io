@@ -119,3 +119,13 @@ When asking Claude to update the site:
    - Zenodo author search: `https://zenodo.org/search?q=Olivier+Saidi&f=resource_type%3Apublication`
    - arXiv paper: `https://arxiv.org/abs/2506.13810`
    - ORCID: `https://orcid.org/0009-0004-3221-6911`
+
+---
+
+## Zenodo Metadata Notes
+
+PACF_LLM (record 15873947) had creator stored as `Olivier, Saidi` (reversed).
+Fixed on 2026-03-23 via Zenodo deposit API — now `Saidi, Olivier` with ORCID.
+
+All 3 papers now consistently use `Saidi, Olivier` as creator name.
+Zenodo search URL: `https://zenodo.org/search?q=creators.name%3A%22Saidi%2C+Olivier%22`
