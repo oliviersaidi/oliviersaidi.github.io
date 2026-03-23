@@ -88,9 +88,7 @@ const records = [15006676, 15873947, 18894726, NEW_ID];
 
 ## Pending Items
 
-- [ ] Add SSRN badge to PACF_F once Abstract ID 6366718 clears review
-  - URL: `https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6366718`
-  - Add as badge in PACF_F `.paper-badges` block
+- [x] SSRN badge added to PACF_F (Abstract ID 6366718)
 - [x] Cambridge Open Engage badge added to PACF_LLM
   - URL: `https://www.cambridge.org/engage/coe/article-details/69afcaead1922e37d565fe6d`
 
